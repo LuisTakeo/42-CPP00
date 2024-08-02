@@ -15,6 +15,12 @@
 #include <cstdlib>
 #include <string>
 
+void	clear_stdin(void)
+{
+	std::clearerr(stdin);
+	std::cin.clear();
+}
+
 int	main(void)
 {
 	std::string	line;
@@ -22,14 +28,13 @@ int	main(void)
 	std::cout << "Welcome to Nakama Book!" << std::endl;
 	while (1)
 	{
-		std::clearerr(stdin);
-		std::cin.clear();
+		clear_stdin();
 		std::cout << "Insert an option: ", std::getline(std::cin, line);
 		// if (std::cin.eof())
 		// 	std::cout << std::endl;
 		if (line == "EXIT")
 			break;
-		std::cout << line << std::endl;
+		// std::cout << line << std::endl;
 
 	}
 	std::cout << "Bye!" << std::endl;
