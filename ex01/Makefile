@@ -4,7 +4,7 @@ FLAGS :=	-Wall -Werror -Wextra -std=c++98
 
 SOURCE_FOLDER := src/
 MAIN := main.cpp
-SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) Contact.cpp)
+SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) Contact.cpp PhoneBook.cpp)
 
 OBJECTS_FOLDER = bin/
 OBJECTS = $(SOURCE:$(SOURCE_FOLDER)%.cpp=$(OBJECTS_FOLDER)%.o)

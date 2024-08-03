@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/03 16:51:43 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/08/03 16:51:43 by tpaim-yu         ###   ########.fr       */
+/*   Created: 2024/08/03 16:51:56 by tpaim-yu          #+#    #+#             */
+/*   Updated: 2024/08/03 16:51:56 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
+# include "Contact.hpp"
+# include <iostream>
+# include <cstdio>
+# include <string>
 
-#include <string>
-
-class Contact
+class PhoneBook
 {
 	private:
 
 	public:
-		std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
-		Contact();
-		~Contact();
-		void setFirstName(std::string firstName);
-		void setLastName(std::string lastName);
-		void setNickName(std::string nickName);
-		void setPhoneNumber(std::string phoneNumber);
-		void setDarkestSecret(std::string darkestSecret);
+		int			index_new_contact;
+		Contact		contacts[8];
+		std::string	line;
 
+		PhoneBook();
+		~PhoneBook();
+
+		void	clearLine(void);
+		void	getInput(void);
+		void	addNewContact(void);
+		void	searchContact(void);
+		void	prompt(void);
+		bool	isAllFilled(Contact &contact);
 };
+
+
 
 #endif
