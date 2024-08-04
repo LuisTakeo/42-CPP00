@@ -15,6 +15,7 @@
 # define CONTACT_HPP
 
 #include <string>
+#include <iostream>
 
 class Contact
 {
@@ -22,13 +23,16 @@ class Contact
 
 	public:
 		std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
+
 		Contact();
 		~Contact();
-		void setFirstName(std::string firstName);
-		void setLastName(std::string lastName);
-		void setNickName(std::string nickName);
-		void setPhoneNumber(std::string phoneNumber);
-		void setDarkestSecret(std::string darkestSecret);
+
+		void	setFirstName(std::string firstName);
+		void	setLastName(std::string lastName);
+		void	setNickName(std::string nickName);
+		void	setPhoneNumber(std::string phoneNumber);
+		void	setDarkestSecret(std::string darkestSecret);
+		void	printData(void);
 
 };
 

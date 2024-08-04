@@ -31,7 +31,8 @@ class PhoneBook
 		~PhoneBook();
 
 		void	clearLine(void);
-		void	getInput(void);
+		void	getInput(std::string label);
+		void	getRequiredInput(std::string label);
 		void	addNewContact(void);
 		void	searchContact(void);
 		void	prompt(void);

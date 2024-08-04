@@ -39,8 +39,8 @@ void	PhoneBook::prompt(void)
 	std::cout << "Welcome to Nakama Book!" << std::endl;
 	while (1)
 	{
-		std::cout << "Insert an option -> [ADD] [SEARCH] [EXIT]: ";
-		this->getInput();
+		this->clearLine();
+		this->getInput("Insert an option -> [ADD] [SEARCH] [EXIT]: ");
 		if (this->line.empty())
 			continue;
 		else if (this->line == "EXIT")
@@ -54,14 +54,31 @@ void	PhoneBook::prompt(void)
 
 	}
 	std::cout << "Bye!" << std::endl;
+	// std::exit(EXIT_SUCCESS);
 }
 
-void	PhoneBook::getInput(void)
+void	PhoneBook::getInput(std::string label)
 {
+	std::cout << label;
 	this->clearLine();
 	std::getline(std::cin, this->line);
 	if (std::cin.eof())
 		(std::cout << std::endl);
+}
+
+void	PhoneBook::getRequiredInput(std::string label)
+{
+	this->clearLine();
+	while (1)
+	{
+		std::cout << label;
+		std::getline(std::cin, this->line);
+		if (std::cin.eof())
+			(std::cout << std::endl);
+		if (!line.empty())
+			break ;
+		std::cout << "Invalid input." << std::endl;
+	}
 }
 
 void	PhoneBook::clearLine(void)
@@ -77,34 +94,33 @@ void	PhoneBook::addNewContact(void)
 
 	if (this->index_new_contact == 8)
 		this->index_new_contact = 0;
-	std::cout << "First name: ";
-	this->getInput();
+	this->getRequiredInput("First name: ");
 	newContact.setFirstName(this->line);
-	std::cout << "Last name: ";
-	this->getInput();
+	this->getRequiredInput("Last name: ");
 	newContact.setLastName(this->line);
-	std::cout << "Nickname: ";
-	this->getInput();
+	this->getRequiredInput("Nickname: ");
 	newContact.setNickName(this->line);
-	std::cout << "Phone number: ";
-	this->getInput();
+	this->getRequiredInput("Phone number: ");
 	newContact.setPhoneNumber(this->line);
-	std::cout << "Darkest secret: ";
-	this->getInput();
+	this->getRequiredInput("Darkest secret: ");
 	newContact.setDarkestSecret(this->line);
 	if (this->isAllFilled(newContact))
 	{
 		this->contacts[this->index_new_contact] = newContact;
+		std::cout << "New contact added" << std::endl;
+		std::cout << "Index: " << this->index_new_contact << std::endl;
+		this->contacts[this->index_new_contact].printData();
 		this->index_new_contact++;
 	}
 	else
-		std::cerr << "Error! Fields with whitespace or not filled." << std::endl;
+		std::cerr << "Error! Fields not filled." << std::endl;
 
 }
 
 void	PhoneBook::searchContact(void)
 {
 	this->clearLine();
+	// TODO
 }
 
 
