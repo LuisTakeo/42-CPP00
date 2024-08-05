@@ -17,6 +17,7 @@
 # include <iostream>
 # include <cstdio>
 # include <string>
+# include <csignal>
 
 class PhoneBook
 {
@@ -37,6 +38,7 @@ class PhoneBook
 		void	searchContact(void);
 		void	prompt(void);
 		bool	isAllFilled(Contact &contact);
+		bool	isOnlySpace(std::string str);
 };
 
 

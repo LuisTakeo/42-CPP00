@@ -34,12 +34,13 @@ PhoneBook::~PhoneBook()
 * ADD: Add a new contact.
 * SEARCH: Show all the contacts and choose a contact
 */
+
 void	PhoneBook::prompt(void)
 {
+	std::signal(SIGINT, SIG_IGN);
 	std::cout << "Welcome to Nakama Book!" << std::endl;
 	while (1)
 	{
-		this->clearLine();
 		this->getInput("Insert an option -> [ADD] [SEARCH] [EXIT]: ");
 		if (this->line.empty())
 			continue;
@@ -66,6 +67,19 @@ void	PhoneBook::getInput(std::string label)
 		(std::cout << std::endl);
 }
 
+bool	PhoneBook::isOnlySpace(std::string str)
+{
+	int	i = 0;
+
+	while (str[i])
+	{
+		if (!std::isspace(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 void	PhoneBook::getRequiredInput(std::string label)
 {
 	this->clearLine();
@@ -75,10 +89,11 @@ void	PhoneBook::getRequiredInput(std::string label)
 		std::getline(std::cin, this->line);
 		if (std::cin.eof())
 			(std::cout << std::endl);
-		if (!line.empty())
+		if (!line.empty() && !this->isOnlySpace(line))
 			break ;
 		std::cout << "Invalid input." << std::endl;
 	}
+	this->clearLine();
 }
 
 void	PhoneBook::clearLine(void)

@@ -1,5 +1,6 @@
 {
 	"files.associations": {
+		"*.scss": "css",
 		"cstring": "cpp",
 		"array": "cpp",
 		"atomic": "cpp",
@@ -47,6 +48,7 @@
 		"sstream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"numbers": "cpp"
 	}
 }
