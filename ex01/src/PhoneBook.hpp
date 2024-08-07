@@ -15,9 +15,11 @@
 
 # include "Contact.hpp"
 # include <iostream>
+# include <iomanip>
 # include <cstdio>
 # include <string>
 # include <csignal>
+# include <cstdlib>
 
 class PhoneBook
 {
@@ -36,9 +38,13 @@ class PhoneBook
 		void	getRequiredInput(std::string label);
 		void	addNewContact(void);
 		void	searchContact(void);
+		void	displayContacts(void);
+		void	printContact(Contact contact, int index);
+		void	printFormat(std::string str);
 		void	prompt(void);
 		bool	isAllFilled(Contact &contact);
 		bool	isOnlySpace(std::string str);
+		bool	isPhoneNumber(std::string str);
 };
 
 
