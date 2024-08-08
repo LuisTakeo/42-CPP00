@@ -24,9 +24,9 @@
 class PhoneBook
 {
 	private:
-		int			index_new_contact;
-		Contact		contacts[8];
-		std::string	line;
+		int			_index_new_contact;
+		Contact		_contacts[8];
+		std::string	_line;
 
 		// Commands
 		void	addNewContact(void);

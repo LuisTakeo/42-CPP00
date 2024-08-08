@@ -18,8 +18,8 @@
 */
 PhoneBook::PhoneBook()
 {
-	this->line = "";
-	this->index_new_contact = 0;
+	this->_line = "";
+	this->_index_new_contact = 0;
 }
 
 /*
@@ -43,13 +43,13 @@ void	PhoneBook::prompt(void)
 	while (1)
 	{
 		this->getInput("Insert an option -> [ADD] [SEARCH] [EXIT]: ");
-		if (this->line.empty())
+		if (this->_line.empty())
 			continue;
-		else if (this->line == "EXIT")
+		else if (this->_line == "EXIT")
 			break;
-		else if (this->line == "ADD")
+		else if (this->_line == "ADD")
 			this->addNewContact();
-		else if (this->line == "SEARCH")
+		else if (this->_line == "SEARCH")
 			this->searchContact();
 		else
 			std::cout << "Invalid option" << std::endl;
@@ -62,25 +62,25 @@ void	PhoneBook::addNewContact(void)
 {
 	Contact	newContact;
 
-	if (this->index_new_contact == 8)
-		this->index_new_contact = 0;
+	if (this->_index_new_contact == 8)
+		this->_index_new_contact = 0;
 	this->getRequiredInput("First name: ");
-	newContact.setFirstName(this->line);
+	newContact.setFirstName(this->_line);
 	this->getRequiredInput("Last name: ");
-	newContact.setLastName(this->line);
+	newContact.setLastName(this->_line);
 	this->getRequiredInput("Nickname: ");
-	newContact.setNickName(this->line);
+	newContact.setNickName(this->_line);
 	this->getRequiredInput("Phone number: ");
-	newContact.setPhoneNumber(this->line);
+	newContact.setPhoneNumber(this->_line);
 	this->getRequiredInput("Darkest secret: ");
-	newContact.setDarkestSecret(this->line);
+	newContact.setDarkestSecret(this->_line);
 	if (this->isAllFilled(newContact) && this->isPhoneNumber(newContact.getPhoneNumber()))
 	{
-		this->contacts[this->index_new_contact] = newContact;
+		this->_contacts[this->_index_new_contact] = newContact;
 		std::cout << "Ok! New contact added" << std::endl;
-		std::cout << "Index: " << this->index_new_contact + 1 << std::endl;
-		this->contacts[this->index_new_contact].printData();
-		this->index_new_contact++;
+		std::cout << "Index: " << this->_index_new_contact + 1 << std::endl;
+		this->_contacts[this->_index_new_contact].printData();
+		this->_index_new_contact++;
 	}
 	else
 		std::cerr << "Error! Fields not filled or PhoneNumber invalid." << std::endl;
@@ -92,22 +92,22 @@ void	PhoneBook::searchContact(void)
 	int	numInput;
 	this->clearLine();
 	this->displayContacts();
-	if (this->contacts[0].getFirstName().empty())
+	if (this->_contacts[0].getFirstName().empty())
 		return ;
 	this->getInput("Choose a nakama by Index (1 to 8): ");
-	numInput = std::atoi(this->line.c_str());
+	numInput = std::atoi(this->_line.c_str());
 	if (numInput < 1 || numInput > 8)
 	{
 		std::cerr << "Invalid input" << std::endl;
 		return ;
 	}
-	if (this->contacts[numInput - 1].getFirstName().empty())
+	if (this->_contacts[numInput - 1].getFirstName().empty())
 	{
 		std::cerr<< "Not found." << std::endl;
 		return ;
 	}
 	std::cout << "Your nakama: " << std::endl;
-	this->printContact(this->contacts[numInput - 1], numInput);
+	this->printContact(this->_contacts[numInput - 1], numInput);
 }
 
 void	PhoneBook::printFormat(std::string str)
@@ -137,15 +137,15 @@ void	PhoneBook::displayContacts(void)
 	int	contact_size = 8;
 	int	i = 0;
 
-	if (this->contacts[0].getFirstName().empty())
+	if (this->_contacts[0].getFirstName().empty())
 		return ;
 	std::cout << "Your nakamas:" << std::endl;
 	std::cout << "      Index|First Name| Last Name|  Nickname|" << std::endl;
 	while (i < contact_size)
 	{
-		if (this->contacts[i].getFirstName().empty())
+		if (this->_contacts[i].getFirstName().empty())
 			break ;
-		this->printContact(this->contacts[i], i + 1);
+		this->printContact(this->_contacts[i], i + 1);
 		i++;
 	}
 }
@@ -154,7 +154,7 @@ void	PhoneBook::getInput(std::string label)
 {
 	std::cout << label;
 	this->clearLine();
-	std::getline(std::cin, this->line);
+	std::getline(std::cin, this->_line);
 	if (std::cin.eof())
 		(std::cout << std::endl);
 }
@@ -165,10 +165,10 @@ void	PhoneBook::getRequiredInput(std::string label)
 	{
 		this->clearLine();
 		std::cout << label;
-		std::getline(std::cin, this->line);
+		std::getline(std::cin, this->_line);
 		if (std::cin.eof())
 			(std::cout << std::endl);
-		if (!line.empty() && !this->isOnlySpace(line))
+		if (!_line.empty() && !this->isOnlySpace(_line))
 			break ;
 		std::cout << "Invalid input." << std::endl;
 	}
