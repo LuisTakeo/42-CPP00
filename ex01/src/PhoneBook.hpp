@@ -24,27 +24,37 @@
 class PhoneBook
 {
 	private:
-
-	public:
 		int			index_new_contact;
 		Contact		contacts[8];
 		std::string	line;
 
-		PhoneBook();
-		~PhoneBook();
-
-		void	clearLine(void);
-		void	getInput(std::string label);
-		void	getRequiredInput(std::string label);
+		// Commands
 		void	addNewContact(void);
 		void	searchContact(void);
+
+		// Inputs
+		void	getInput(std::string label);
+		void	getRequiredInput(std::string label);
+
+		// Displays
 		void	displayContacts(void);
 		void	printContact(Contact contact, int index);
 		void	printFormat(std::string str);
-		void	prompt(void);
+
+		// Utils
+		void	clearLine(void);
+
+		// Validations
 		bool	isAllFilled(Contact &contact);
 		bool	isOnlySpace(std::string str);
 		bool	isPhoneNumber(std::string str);
+
+	public:
+
+		PhoneBook();
+		~PhoneBook();
+		void	prompt(void);
+
 };
 
 

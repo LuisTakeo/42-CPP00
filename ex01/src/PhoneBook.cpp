@@ -74,10 +74,10 @@ void	PhoneBook::addNewContact(void)
 	newContact.setPhoneNumber(this->line);
 	this->getRequiredInput("Darkest secret: ");
 	newContact.setDarkestSecret(this->line);
-	if (this->isAllFilled(newContact) && this->isPhoneNumber(newContact.phoneNumber))
+	if (this->isAllFilled(newContact) && this->isPhoneNumber(newContact.getPhoneNumber()))
 	{
 		this->contacts[this->index_new_contact] = newContact;
-		std::cout << "New contact added" << std::endl;
+		std::cout << "Ok! New contact added" << std::endl;
 		std::cout << "Index: " << this->index_new_contact + 1 << std::endl;
 		this->contacts[this->index_new_contact].printData();
 		this->index_new_contact++;
@@ -92,7 +92,7 @@ void	PhoneBook::searchContact(void)
 	int	numInput;
 	this->clearLine();
 	this->displayContacts();
-	if (this->contacts[0].firstName.empty())
+	if (this->contacts[0].getFirstName().empty())
 		return ;
 	this->getInput("Choose a nakama by Index (1 to 8): ");
 	numInput = std::atoi(this->line.c_str());
@@ -101,7 +101,7 @@ void	PhoneBook::searchContact(void)
 		std::cerr << "Invalid input" << std::endl;
 		return ;
 	}
-	if (this->contacts[numInput - 1].firstName.empty())
+	if (this->contacts[numInput - 1].getFirstName().empty())
 	{
 		std::cerr<< "Not found." << std::endl;
 		return ;
@@ -124,11 +124,11 @@ void	PhoneBook::printContact(Contact contact, int index)
 {
 	std::cout << "|" << std::right << std::setw(10) << index;
 	std::cout << "|";
-	this->printFormat(contact.firstName);
+	this->printFormat(contact.getFirstName());
 	std::cout << "|";
-	this->printFormat(contact.lastName);
+	this->printFormat(contact.getLastName());
 	std::cout << "|";
-	this->printFormat(contact.nickName);
+	this->printFormat(contact.getNickName());
 	std::cout << "|" << std::endl;
 }
 
@@ -137,13 +137,13 @@ void	PhoneBook::displayContacts(void)
 	int	contact_size = 8;
 	int	i = 0;
 
-	if (this->contacts[0].firstName.empty())
+	if (this->contacts[0].getFirstName().empty())
 		return ;
 	std::cout << "Your nakamas:" << std::endl;
 	std::cout << "      Index|First Name| Last Name|  Nickname|" << std::endl;
 	while (i < contact_size)
 	{
-		if (this->contacts[i].firstName.empty())
+		if (this->contacts[i].getFirstName().empty())
 			break ;
 		this->printContact(this->contacts[i], i + 1);
 		i++;
@@ -161,9 +161,9 @@ void	PhoneBook::getInput(std::string label)
 
 void	PhoneBook::getRequiredInput(std::string label)
 {
-	this->clearLine();
 	while (1)
 	{
+		this->clearLine();
 		std::cout << label;
 		std::getline(std::cin, this->line);
 		if (std::cin.eof())
@@ -206,9 +206,9 @@ bool	PhoneBook::isOnlySpace(std::string str)
 
 bool	PhoneBook::isAllFilled(Contact &contact)
 {
-	return (!contact.firstName.empty()
-		&& !contact.lastName.empty()
-		&& !contact.nickName.empty()
-		&& !contact.phoneNumber.empty()
-		&& !contact.darkestSecret.empty());
+	return (!contact.getFirstName().empty()
+		&& !contact.getLastName().empty()
+		&& !contact.getNickName().empty()
+		&& !contact.getPhoneNumber().empty()
+		&& !contact.getDarkestSecret().empty());
 }

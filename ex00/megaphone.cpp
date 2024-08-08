@@ -20,7 +20,7 @@ void	megaphone(std::string str)
 {
 	for (int i = 0; str[i]; i++)
 		std::cout << (char)std::toupper(str[i]);
-	std::cout << std::endl;
+
 }
 
 int	main(int argc, char **argv)
@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 	{
 		str = argv[i];
 		megaphone(str);
+		std::cout << " ";
 	}
+	std::cout << std::endl;
 	return (0);
 }
